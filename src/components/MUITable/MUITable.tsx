@@ -7,11 +7,11 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TablePagination from '@mui/material/TablePagination'
 import TableRow from '@mui/material/TableRow'
+import './MUITable.scss'
 
 interface Column {
   id: 'flag' | 'name' | 'region' | 'population' | 'language'
     label: string
-  align?: 'right'
 }
 
 const columns: readonly Column[] = [
@@ -20,17 +20,14 @@ const columns: readonly Column[] = [
   {
     id: 'region',
     label: 'Region',
-    align: 'right'
   },
   {
     id: 'population',
     label: 'Population',
-    align: 'right'
   },
   {
     id: 'language',
     label: 'Language',
-    align: 'right'
   }
 ]
 
@@ -46,38 +43,39 @@ export default function MUITable({ data }: any) {
     setRowsPerPage(+event.target.value)
     setPage(0)
   }
-
+    
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <TableContainer>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead>
-            <TableRow>
+    <Paper className='table__wrapper'>
+      <TableContainer >
+        <Table className='table' stickyHeader aria-label="sticky table">
+          <TableHead className='table__head'>
+            <TableRow className='table__row'>
               {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                >
+                  <TableCell
+                    className='table__cell'
+                      key={column.id}
+                      id={column.id}
+                  >
                   {column.label}
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
-          <TableBody>
-            {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any) => {
-              const languageArray = Object.values(row?.languages)
+          <TableBody className='table__body'>
+            {data?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any) => {
+              const languageArray = row?.languages && Object.values(row.languages)
               return (
-                <TableRow key={row?.area}>
-                  <TableCell>
-                    <img src={row?.flags.png} alt={row?.flags.alt} />
+                <TableRow className='table__row' key={row?.area}>
+                  <TableCell className='table__cell'>
+                    <img className='image--flag' src={row?.flags.png} alt={row?.flags.alt} />
                   </TableCell>
-                  <TableCell>{row?.name?.common}</TableCell>
-                  <TableCell align="right">{row.region}</TableCell>
-                  <TableCell align="right">{row.area}</TableCell>
-                  <TableCell align="right">
+                  <TableCell className='table__cell'>{row?.name?.common}</TableCell>
+                  <TableCell className='table__cell'>{row.region}</TableCell>
+                  <TableCell className='table__cell'>{row.area}</TableCell>
+                  <TableCell className='table__cell'>
                     <ul>
-                      {languageArray.map((lang: any) => (
-                        <li>{lang}</li>
+                      {languageArray?.map((lang: any, index: number) => (
+                        <li key={index}>{lang}</li>
                       ))}
                     </ul>
                   </TableCell>
@@ -94,7 +92,8 @@ export default function MUITable({ data }: any) {
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
+              onRowsPerPageChange={handleChangeRowsPerPage}
+              className='pagination'
       />
     </Paper>
   )

@@ -5,7 +5,7 @@ import './Header.scss'
 const Header = () => {
   return (
     <div className='header'>
-      <div className="title">Country</div>
+      <a href="/" className="title">Country</a>
       <div className="search-input__wrapper">
         <SearchIcon />
         <input type="text" className="search-input__box" />

@@ -12,6 +12,8 @@
     .title {
         font-size: 3rem;
         font-weight: 600;
+        color: $--theme-secondary-color;
+        text-decoration: none;
     }
 
     .search-input__wrapper {

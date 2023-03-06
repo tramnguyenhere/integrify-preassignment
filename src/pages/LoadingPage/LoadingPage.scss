@@ -1,0 +1,12 @@
+@import '../../global.scss';
+
+.loading__wrapper {
+    display: flex;
+    height: calc(100vh - 50px);
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+    font-size: 100px;
+    color: $--theme-primary-color;
+    transition: all ease .5s;
+}
