@@ -15,8 +15,6 @@ interface Props {
   data: Country[] | null
 }
 
-// let country: any = 'Finland';
-
 function App() {
   const {  data }: Props = useFetchData('all')
   const [search, setSearch] = useState('')
