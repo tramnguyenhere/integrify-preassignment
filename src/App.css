@@ -3,4 +3,7 @@
   width: 100vw;
   margin: auto;
   height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
