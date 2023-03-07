@@ -9,3 +9,9 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.dark-mode {
+  background: #0d3b66 !important;
+  background-color: black;
+  color: #faf0ca !important;
+}

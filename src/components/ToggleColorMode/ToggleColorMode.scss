@@ -1,0 +1,14 @@
+@import '../../global.scss';
+
+.color-mode__wrapper {
+    border-radius: 20px;
+    display: flex;
+    padding: 5px;
+    align-items: center;
+
+    cursor: pointer;
+
+    .mode {
+        color: $--theme-secondary-color
+    }
+}

@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import Header from './components/Header/Header';
 import useFetchData from './hooks/useFetchData';
-import { Countries} from './types/types';
+import { Country} from './types/types';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import CountryCard from './components/CountryCard/CountryCard';
 import Home from './pages/Home/Home';
 import Footer from './components/Footer/Footer';
+import { useSelector } from 'react-redux';
+import { RootState } from './redux/store';
 
 interface Props {
-  data: Countries
+  data: Country[] | null
 }
 
 // let country: any = 'Finland';
@@ -19,10 +21,11 @@ function App() {
   const {  data }: Props = useFetchData('all')
   const [search, setSearch] = useState('')
   
+  const isDarkMode = useSelector((state: RootState) => state.colorMode.darkMode)
 
   return (
     <Router>
-      <div className="App">
+      <div className={`App ${isDarkMode && 'dark-mode'}`}>
         <Header search={search} setSearch={setSearch} />
       
       <Routes>

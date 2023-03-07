@@ -14,8 +14,6 @@ interface Props {
 
 const CardBody = ({ countryFlagImage, countryFlagDescription, countryRegionName, countrySubRegionName, countryLanguages, countryPopulation, isIndependent, countryLatlgn }: Props) => {
   
-  console.log(countryLatlgn)
-  
   const independentConfirmation = isIndependent ? 'gained the independent ' : 'not gained the independent'
 
   return (

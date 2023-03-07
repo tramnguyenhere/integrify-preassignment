@@ -15,5 +15,3 @@ export interface Country {
     },
     population: number
 }
-  
-export type Countries = Country[] | null

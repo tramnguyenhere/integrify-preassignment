@@ -20,7 +20,7 @@ const CardHeader = ({ countryOfficialName, countryCommonName, capitalNames }: Pr
               <span className='card-header__titles--country'>{countryOfficialName}</span>
               <ul className='card-header__titles--capitals'>
                   {capitalNames?.map((capital, index) => (
-                      <li key={index}>{capital}</li>
+                      <li className='card-header__titles--capital' key={index}>{capital}</li>
                   ))}
               </ul>
           </div>

@@ -8,10 +8,10 @@
     align-items: flex-start;
     justify-content: space-between;
     margin: 1rem auto;
-    border: 3px solid $--theme-primary-color;
+    border: 3px solid $--theme-secondary-color;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 5px 5px $--theme-primary-color;
+    box-shadow: 5px 5px $--theme-secondary-color;
 
 }
 @media only screen and (max-width: 768px) {

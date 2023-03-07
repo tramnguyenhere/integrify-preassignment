@@ -1,11 +1,11 @@
 import React from 'react'
 import MUITable from '../../components/MUITable/MUITable'
 import { sortedDataByAlphabet } from '../../utils/utils'
-import { Countries } from '../../types/types'
+import {  Country } from '../../types/types'
 import ProcessingPage from '../ProcessingPage/ProcessingPage'
 
 interface Props {
-    data: Countries,
+    data: Country[] | null,
     searchQuery: string
 }
 
@@ -13,7 +13,7 @@ const Home = ({ data, searchQuery }: Props) => {
     
     const sortedData = sortedDataByAlphabet(data)
 
-    const searchedResultsData = sortedData?.filter(data => data.name.common.toLowerCase().includes(searchQuery))
+    const searchedResultsData = sortedData?.filter((data:Country) => data.name.common.toLowerCase().includes(searchQuery))
     
 
     if (!data) {

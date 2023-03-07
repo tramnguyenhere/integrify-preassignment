@@ -1,12 +1,21 @@
-import * as React from 'react'
+import React, {useState} from 'react'
 import{ Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow} from '@mui/material'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import {Link} from 'react-router-dom'
 import './MUITable.scss'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
+import { Country } from '../../types/types'
+
+const INITIALROWPERPAGE = 5;
 
 interface Column {
   id: 'flag' | 'name' | 'region' | 'population' | 'language' | 'showMoreButton'
   label: string
+}
+
+interface Props {
+  data: Country[] | undefined
 }
 
 const columns: readonly Column[] = [
@@ -30,11 +39,13 @@ const columns: readonly Column[] = [
   }
 ]
 
-export default function MUITable({ data }: any) {
-  const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(5)
+export default function MUITable({ data }: Props) {
+  const [page, setPage] = useState(0)
+  const [rowsPerPage, setRowsPerPage] = useState(INITIALROWPERPAGE)
 
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const isDarkMode = useSelector((state: RootState) => state.colorMode.darkMode)
+
+  const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage)
   }
 
@@ -60,11 +71,11 @@ export default function MUITable({ data }: any) {
               ))}
             </TableRow>
           </TableHead>
-          <TableBody className='table__body'>
+          <TableBody className={`table__body ${isDarkMode && 'dark-mode'}`}>
             {data?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any, index: number) => {
               const languageArray = row?.languages && Object.values(row.languages)
               return (
-                <TableRow className='table__row' key={index}>
+                <TableRow className='table__row' key={index} >
                   <TableCell className='table__cell'>
                     <img className='image--flag' src={row?.flags?.png} alt={row?.flags?.alt} />
                   </TableCell>
@@ -88,7 +99,7 @@ export default function MUITable({ data }: any) {
       <TablePagination
         rowsPerPageOptions={[5, 10, 25, 100]}
         component="div"
-        count={data.length}
+        count={data!.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

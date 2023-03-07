@@ -7,8 +7,12 @@ import CardHeader from './CardHeader/CardHeader';
 import './CountryCard.scss'
 import CardBody from './CardBody/CardBody';
 import CardFooter from './CardFooter/CardFooter';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 const CountryCard = () => {
+  const isDarkMode = useSelector((state: RootState) => state.colorMode.darkMode)
+
   const { name } = useParams();
 
   const {data} = useFetchData(`name/${name}`)
@@ -34,7 +38,7 @@ const CountryCard = () => {
   }
 
   return (
-    <div className='card__wrapper'>
+    <div className={`card__wrapper ${isDarkMode && 'dark-mode'}`}>
       <CardHeader
         countryOfficialName={countryOfficialName}
         countryCommonName={countryCommonName}

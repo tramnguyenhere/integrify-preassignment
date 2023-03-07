@@ -11,9 +11,10 @@
     .card__description {
         font-size: 20px;
         text-align: justify;
+
         .card__figure {
             font-weight: 600;
-            color: $--theme-primary-color;
+            color: inherit;
         }
     }
 }
