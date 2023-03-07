@@ -6,7 +6,7 @@
     justify-content: space-between;
     background: $--theme-primary-color;
     color: $--theme-highlight-color;
-    height: 50px;
+    height: 40px;
     padding: 20px;
 
     .title {
@@ -20,7 +20,7 @@
         display: flex;
         align-items: center;
         width: 50vw;
-        height: 70%;
+        height: 80%;
         position: relative;
         
         .search-input__box {
@@ -33,7 +33,7 @@
 
         svg {
             position: absolute;
-            top: 20%;
+            top: 18%;
             left: 10px;
             color: $--theme-primary-color;
         }

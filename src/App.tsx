@@ -1,25 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from './components/Header/Header';
-import './App.css';
 import useFetchData from './hooks/useFetchData';
 import { Countries} from './types/types';
-import MUITable from './components/MUITable/MUITable';
-import { sortedDataByAlphabet } from './utils/utils';
-import LoadingPage from './pages/LoadingPage/LoadingPage';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import './App.css';
+import CountryCard from './components/CountryCard/CountryCard';
+import Home from './pages/Home/Home';
 
 interface Props {
   loading: boolean,
   data: Countries
 }
 
+// let country: any = 'Finland';
+
 function App() {
   const { loading, data }: Props = useFetchData('all')
+  const [search, setSearch] = useState('')
+  
 
   return (
-    <div className="App">
-      <Header />
-      {loading ? <LoadingPage /> : <MUITable data={sortedDataByAlphabet(data)} />}
-    </div>
+    <Router>
+      <div className="App">
+        <Header search={search} setSearch={setSearch} />
+      </div>
+      
+      <Routes>
+        <Route path='/' element={<Home loading={loading} data={data} searchQuery={search} />} />
+        <Route path={`/country/:name`} element={<CountryCard />} />
+      </Routes>
+    </Router>
   );
 }
 

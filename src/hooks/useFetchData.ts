@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 
-const baseUrl = 'https://restcountries.com/v3.1/'
+const baseUrl = 'https://restcountries.com/v3.1'
 
 const useFetchData = (query:string) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

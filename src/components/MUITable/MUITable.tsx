@@ -1,17 +1,12 @@
 import * as React from 'react'
-import Paper from '@mui/material/Paper'
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TablePagination from '@mui/material/TablePagination'
-import TableRow from '@mui/material/TableRow'
+import{ Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow} from '@mui/material'
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
+import {Link} from 'react-router-dom'
 import './MUITable.scss'
 
 interface Column {
-  id: 'flag' | 'name' | 'region' | 'population' | 'language'
-    label: string
+  id: 'flag' | 'name' | 'region' | 'population' | 'language' | 'showMoreButton'
+  label: string
 }
 
 const columns: readonly Column[] = [
@@ -28,6 +23,10 @@ const columns: readonly Column[] = [
   {
     id: 'language',
     label: 'Language',
+  },
+  {
+    id: 'showMoreButton',
+    label: 'More details',
   }
 ]
 
@@ -62,12 +61,12 @@ export default function MUITable({ data }: any) {
             </TableRow>
           </TableHead>
           <TableBody className='table__body'>
-            {data?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any) => {
+            {data?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row: any, index: number) => {
               const languageArray = row?.languages && Object.values(row.languages)
               return (
-                <TableRow className='table__row' key={row?.area}>
+                <TableRow className='table__row' key={index}>
                   <TableCell className='table__cell'>
-                    <img className='image--flag' src={row?.flags.png} alt={row?.flags.alt} />
+                    <img className='image--flag' src={row?.flags?.png} alt={row?.flags?.alt} />
                   </TableCell>
                   <TableCell className='table__cell'>{row?.name?.common}</TableCell>
                   <TableCell className='table__cell'>{row.region}</TableCell>
@@ -79,6 +78,7 @@ export default function MUITable({ data }: any) {
                       ))}
                     </ul>
                   </TableCell>
+                  <TableCell className='table__cell'><Link to={`/country/${row?.name?.common}`}><MoreHorizIcon /></Link></TableCell>
                 </TableRow>
               )
             })}
