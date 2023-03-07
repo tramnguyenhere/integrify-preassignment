@@ -1,1 +1,21 @@
 @import '../../global.scss';
+
+.card__wrapper {
+    width: 30vw;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 1rem auto;
+    border: 3px solid $--theme-primary-color;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 5px 5px $--theme-primary-color;
+
+}
+@media only screen and (max-width: 768px) {
+    .card__wrapper {
+        width: 70vw !important;
+    }
+}

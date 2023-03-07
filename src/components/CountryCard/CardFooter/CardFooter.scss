@@ -1,0 +1,10 @@
+@import '../../../global.scss';
+
+.card-footer__wrapper {
+    width: 100%;
+    text-align: right;
+
+    .card-footer__link {
+        color: $--theme-primary-color;
+    }
+}

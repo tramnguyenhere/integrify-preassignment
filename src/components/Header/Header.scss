@@ -9,6 +9,16 @@
     height: 40px;
     padding: 20px;
 
+    @media only screen and (max-width: 320px)  {
+        .title {
+            font-size: 1.8rem !important;
+        }
+
+        .search-input__wrapper {
+            height: 70% !important;
+        }
+    }
+
     .title {
         font-size: 3rem;
         font-weight: 600;

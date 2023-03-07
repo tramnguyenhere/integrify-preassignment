@@ -8,11 +8,20 @@
     flex-direction: column;
     justify-content: space-between;
 
+
+    @media only screen and (max-width: 768px) and (min-width: 319px)  {
+        .table__head {
+            .table__row {
+                .table__cell {
+                    font-size: 1rem !important;
+                }}}
+    }
+
     .table {
         .table__head {
             .table__row {
                 .table__cell {
-                    font-size: 25px;
+                    font-size: 1.5rem;
                     font-weight: 600;
                     padding: 10px 0;
                     background: $--theme-secondary-color;

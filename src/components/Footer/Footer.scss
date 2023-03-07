@@ -1,0 +1,18 @@
+@import '../../global.scss';
+
+.footer {
+    height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background: $--theme-primary-color;
+    .social-accounts {
+        .social-account {
+            padding: 0 10px;
+            color: $--theme-secondary-color;
+        }
+    }
+    .copyright {
+        color: $--theme-secondary-color;
+    }
+}

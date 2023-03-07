@@ -4,16 +4,21 @@ import useFetchData from '../../hooks/useFetchData';
 import ProcessingPage from '../../pages/ProcessingPage/ProcessingPage';
 import CardHeader from './CardHeader/CardHeader';
 
+import './CountryCard.scss'
+import CardBody from './CardBody/CardBody';
+import CardFooter from './CardFooter/CardFooter';
+
 const CountryCard = () => {
   const { name } = useParams();
 
-  const {loading, data} = useFetchData(`name/${name}`)
+  const {data} = useFetchData(`name/${name}`)
   
   const country = data && data.length > 0 ? data[0] : null;
 
   const countryOfficialName = country?.name?.official
   const countryCommonName = country?.name?.common
   const countryCapitalNames = country?.capital
+
   const countryFlagImage = country?.flags?.png
   const countryFlagDescription = country?.flags?.alt
   const countryRegionName = country?.region
@@ -21,18 +26,29 @@ const CountryCard = () => {
   const countryLanguages = country?.language
   const countryPopulation = country?.population
   const isIndependent = country?.independent
-
-
+  const countryLatlgn = country?.latlng
+  const countryMap = country?.maps?.googleMaps
   
-
-  if (loading) {
-    <ProcessingPage processingTerm='Loading country data...'/>
+  if (!data) {
+    return <ProcessingPage processingTerm='Loading country data...'/>
   }
+
   return (
-    <div>
-      <div>
-        <CardHeader countryOfficialName={countryOfficialName} countryCommonName={countryCommonName} capitalName={countryCapitalNames} />
-      </div>  
+    <div className='card__wrapper'>
+      <CardHeader
+        countryOfficialName={countryOfficialName}
+        countryCommonName={countryCommonName}
+        capitalNames={countryCapitalNames} />
+      <CardBody
+        isIndependent={isIndependent}
+        countryFlagDescription={countryFlagDescription}
+        countryFlagImage={countryFlagImage}
+        countryLanguages={countryLanguages}
+        countryPopulation={countryPopulation}
+        countryRegionName={countryRegionName}
+        countrySubRegionName={countrySubRegionName}
+        countryLatlgn={countryLatlgn} /> 
+      <CardFooter countryMap={countryMap} />
     </div>
   )
 }

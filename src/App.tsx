@@ -7,16 +7,16 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import CountryCard from './components/CountryCard/CountryCard';
 import Home from './pages/Home/Home';
+import Footer from './components/Footer/Footer';
 
 interface Props {
-  loading: boolean,
   data: Countries
 }
 
 // let country: any = 'Finland';
 
 function App() {
-  const { loading, data }: Props = useFetchData('all')
+  const {  data }: Props = useFetchData('all')
   const [search, setSearch] = useState('')
   
 
@@ -24,12 +24,13 @@ function App() {
     <Router>
       <div className="App">
         <Header search={search} setSearch={setSearch} />
-      </div>
       
       <Routes>
-        <Route path='/' element={<Home loading={loading} data={data} searchQuery={search} />} />
+        <Route path='/' element={<Home data={data} searchQuery={search} />} />
         <Route path={`/country/:name`} element={<CountryCard />} />
       </Routes>
+        <Footer />
+      </div>
     </Router>
   );
 }

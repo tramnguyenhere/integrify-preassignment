@@ -5,19 +5,18 @@ import { Countries } from '../../types/types'
 import ProcessingPage from '../ProcessingPage/ProcessingPage'
 
 interface Props {
-    loading: boolean,
     data: Countries,
     searchQuery: string
 }
 
-const Home = ({ loading, data, searchQuery }: Props) => {
+const Home = ({ data, searchQuery }: Props) => {
     
     const sortedData = sortedDataByAlphabet(data)
 
     const searchedResultsData = sortedData?.filter(data => data.name.common.toLowerCase().includes(searchQuery))
     
 
-    if (loading) {
+    if (!data) {
         return <ProcessingPage processingTerm='loading...' />
     }
 

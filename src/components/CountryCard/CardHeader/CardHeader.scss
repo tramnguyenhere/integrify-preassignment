@@ -1,0 +1,39 @@
+@import '../../../global.scss';
+
+.card-header__wrapper {
+    display: flex;
+    width: fit-content;
+    justify-content: space-between;
+    align-items: center;
+    
+    .card-header__logo {
+        height: 40px;
+        width: 40px;
+        background: $--theme-secondary-color;
+        align-items: center;
+        text-align: center;
+        border-radius: 50%;
+        font-size: 25px;
+        font-weight: 600;
+    }
+
+    .card-header__titles {
+        font-size: 20px;
+        margin-left: 10px;
+        
+        .card-header__titles--country {
+            font-weight: 700;
+            text-transform: uppercase;
+        
+        }
+        
+        .card-header__titles--capitals {
+            margin: 0;
+            list-style: none;
+            padding: 0;
+        }
+    }
+}
+
+
+
